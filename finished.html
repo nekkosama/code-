@@ -117,6 +117,7 @@
 	}
 </style>
 <script>
+	// Ngay khi trang này được load thành công, xoá tất cả các thông tin trước đó.
 	window.addEventListener('load', (event) => {
 		localStorage.clear("initial_data")
 	});
@@ -125,7 +126,7 @@
 	<p class="text"></p>
 	<h2> <span>Bạn đã nộp dữ liệu thành công!</span> </h2>
 	<a href="https://www.vinmec.com/vi/tin-tuc/thong-tin-suc-khoe/chi-so-bmi-bao-nhieu-la-binh-thuong/">
-		<button id="btn" onClick="link()">Tham khảo lời khuyên từ chuyên gia!</button>
+		<button id="btn">Tham khảo lời khuyên từ chuyên gia!</button>
 	</a>
 	<p class="text"></p>
 </div>
