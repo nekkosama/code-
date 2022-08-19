@@ -13,17 +13,20 @@
 </head>
 
 <script>
-    // URL of the Google Sheet function
-    const google_sheet = "https://script.google.com/macros/s/AKfycbwytA4R544mbYdOkUbXtPOKH2NI0pmGEkr6CBM-IU5yBKJSEJ4t1nWUp0FrSaN8Rmu4/exec"
+
     function sendData() {
-        localStorage.clear("initial_data")
+        /**
+         * Lưu dữ liệu thông tin cá nhân vào Local Storage (bộ nhớ của trình duyệt) 
+         */
+        localStorage.clear("initial_data") // Xoá toàn bộ dữ liệu của lần sử dụng trước
+
         let user_form = document.querySelector("#submit_form")
-        const form_data = new FormData(user_form)
+        const form_data = new FormData(user_form) // Tạo 1 object FormData để lấy dữ liệu từ Form
 
-        const array = Array.from(form_data)
-        localStorage.setItem('initial_data', JSON.stringify(array))
+        const array = Array.from(form_data) // Chuyển thành kiểu dữ liệu Mảng để dễ lưu trữ
+        localStorage.setItem('initial_data', JSON.stringify(array)) // Lưu dữ liệu vào trong Local Storage
 
-        window.location.href = "./thong_tin_bmi.html"
+        window.location.href = "./thong_tin_bmi.html" // Chuyển sang trang kế tiếp
     }
 
 </script>

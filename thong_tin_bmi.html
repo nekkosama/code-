@@ -236,24 +236,36 @@
 
     async function sendData() {
 
-        // URL of the Google Sheet function
+        /**
+         * 
+         * Kết hợp dữ liệu từ trang Thông tin cá nhân và trang này để gửi lên
+         * Google Sheet
+         */
+
+        // Địa chỉ của đoạn Script để gửi lên Sheet
         const google_sheet = "https://script.google.com/macros/s/AKfycbwytA4R544mbYdOkUbXtPOKH2NI0pmGEkr6CBM-IU5yBKJSEJ4t1nWUp0FrSaN8Rmu4/exec"
         let user_form = document.querySelector("#submit_form")
+        // Tạo 1 object FormData đễ lấy dữ liệu từ trang này
         const new_form_data = new FormData(user_form)
 
+        // Lấy dự liệu từ trang trước
         let personal_data = JSON.parse(localStorage.getItem("initial_data"))
 
+        // Lặp qua từng thông tin từ trang trước và thêm vào FormData trên
         personal_data.forEach(function (element) {
             new_form_data.append(element[0], element[1]);
         })
 
-
+        // Sử dụng hàm Fetch để gửi lên Google Sheet
         const response = await fetch(google_sheet, {
             method: 'POST',
             body: new_form_data
         })
+        // Thu thập thông tin được trả về
         remote_result = await response.json()
 
+        // Kiểm tra xem việc gửi thông tin có lỗi hay không, nếu có hiện lỗi, 
+        // thì báo lỗi cho người dùng, nếu không thì chuyển qua trang cuối
         if (!response.ok || remote_result.result == "error") {
             const error_element = document.querySelector("#error-text")
             error_element.innerHTML = "Có lỗi đã xảy ra!"
