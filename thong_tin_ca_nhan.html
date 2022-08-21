@@ -12,24 +12,6 @@
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
-<script>
-
-    function sendData() {
-        /**
-         * Lưu dữ liệu thông tin cá nhân vào Local Storage (bộ nhớ của trình duyệt) 
-         */
-        localStorage.clear("initial_data") // Xoá toàn bộ dữ liệu của lần sử dụng trước
-
-        let user_form = document.querySelector("#submit_form")
-        const form_data = new FormData(user_form) // Tạo 1 object FormData để lấy dữ liệu từ Form
-
-        const array = Array.from(form_data) // Chuyển thành kiểu dữ liệu Mảng để dễ lưu trữ
-        localStorage.setItem('initial_data', JSON.stringify(array)) // Lưu dữ liệu vào trong Local Storage
-
-        window.location.href = "./thong_tin_bmi.html" // Chuyển sang trang kế tiếp
-    }
-
-</script>
 
 <body style="height: 1024px;">
 
@@ -192,45 +174,68 @@
             <h2> <span class="dc">Thông tin</span> </h2>
             <p class="text"></p>
             <p class="text">Tỉnh:</p>
-            <select name="Tỉnh">
-                <option>Tỉnh, thành phố</option>
+            <select name="Tỉnh" required>
+                <option disabled selected hidden>Tỉnh, thành phố</option>
                 <option>Tây Ninh</option>
                 <option>Bình Phước</option>
             </select>
             <p class="text"></p>
             <p class="text">Trường:</p>
-            <select name="Trường">
-                <option>Trường</option>
+            <select name="Trường" required>
+                <option disabled selected hidden>Trường</option>
                 <option>THPT Chuyên Hoàng Lê Kha</option>
                 <option>THPT Chuyên Bình Long</option>
             </select>
             <p class="text"></p>
             <p class="text">Lớp:</p>
-            <input type="text" name="Lớp" id=l placeholder="VD: 11N2">
+            <input type="text" name="Lớp" id=l placeholder="VD: 11N2" required>
             <p class="text"></p>
             <span id="requiredl"></span>
             <p class="text"></p>
             <p class="text">Họ và tên:</p>
-            <input type="text" id=f name="Họ và tên" placeholder="VD: Nguyễn Văn A">
+            <input type="text" id=f name="Họ và tên" placeholder="VD: Nguyễn Văn A" required>
             <p class="text"></p>
             <span id="requiredf"></span>
             <p class="text"></p>
             <p class="text">Ngày sinh:</p>
-            <input type="text" id=h name="Ngày sinh" placeholder="dd/mm/yyyy">
+            <input type="text" id=h name="Ngày sinh" placeholder="dd/mm/yyyy" required>
             <p class="text"></p>
             <span id="requiredn"></span>
             <p class="text"></p>
             <p class="text">Mã số học sinh:</p>
-            <input type="text" id=h name="Mã số học sinh" placeholder="VD: 210423">
+            <input type="text" id=h name="Mã số học sinh" placeholder="VD: 210423" required>
             <p class="text"></p>
             <span id="requiredm"></span>
             <p class="text"></p>
             <p class="text"></p>
             <p class="text" id="error-text"></p>
-            <button id="btn" type="button" onClick="sendData()">Tiếp theo</button>
+            <button id="btn" type="submit">Tiếp theo</button>
         </form>
     </div>
 </body>
 
+
+<script>
+
+    let user_form = document.getElementById("submit_form")
+    user_form.onsubmit = function (e) {
+        e.preventDefault()
+        saveTempData()
+    }
+    function saveTempData() {
+        /**
+         * Lưu dữ liệu thông tin cá nhân vào Local Storage (bộ nhớ của trình duyệt) 
+         */
+        localStorage.clear("initial_data") // Xoá toàn bộ dữ liệu của lần sử dụng trước
+
+        const form_data = new FormData(user_form) // Tạo 1 object FormData để lấy dữ liệu từ Form
+
+        const array = Array.from(form_data) // Chuyển thành kiểu dữ liệu Mảng để dễ lưu trữ
+        localStorage.setItem('initial_data', JSON.stringify(array)) // Lưu dữ liệu vào trong Local Storage
+
+        window.location.href = "./thong_tin_bmi.html" // Chuyển sang trang kế tiếp
+    }
+
+</script>
 
 </html>
