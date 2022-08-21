@@ -109,7 +109,9 @@
     #w,
     #h,
     #l,
-    #f {
+    #f,
+    #n,
+    #m {
         color: #222f3e;
         text-align: left;
         font-size: 20px;
@@ -122,7 +124,11 @@
     }
 
     #w:focus,
-    #h:focus {
+    #h:focus,
+    #l:focus,
+    #n:focus,
+    #m:focus,
+    #f:focus {
         border-bottom: 2px solid #341f97;
         width: 300px;
         transition: 0.5s;
@@ -199,12 +205,12 @@
             <span id="requiredf"></span>
             <p class="text"></p>
             <p class="text">Ngày sinh:</p>
-            <input type="text" id="h" name="Ngày sinh" placeholder="dd/mm/yyyy" required />
+            <input type="text" id="n" name="Ngày sinh" placeholder="dd/mm/yyyy" required />
             <p class="text"></p>
             <span id="requiredn"></span>
             <p class="text"></p>
             <p class="text">Mã số học sinh:</p>
-            <input type="text" id="h" name="Mã số học sinh" placeholder="VD: 210423" required />
+            <input type="text" id="m" name="Mã số học sinh" placeholder="VD: 210423" required />
             <p class="text"></p>
             <span id="requiredm"></span>
             <p class="text"></p>
